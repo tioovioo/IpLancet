@@ -1,0 +1,60 @@
+#tomcat配置
+server:
+  port: 80
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+  max-http-header-size: 4048576  #设置请求头大小
+
+#mysql连接配置
+mysql:
+    ip: ***
+    port: ***
+    database: ***
+    username: ***
+    password: ***
+#  数据源配置
+spring:
+  application:
+    name: demo
+  datasource:
+        url: jdbc:mysql://${mysql.ip}:${mysql.port}/${mysql.database}?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: ${mysql.username}
+        password: ${mysql.password}
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        drivers: stata
+        maxAcer-class-name: com.mysql.jdbc.Driver
+        filttive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+
+#  thymeleaf配置:取消模板文件缓存
+  thymeleaf:
+        prefix: classpath:/templates/
+        cache: false
+
+# mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+#分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+#日志
+logging:
+  level:
+    com.doctorai.ipdemo.dao: debug
