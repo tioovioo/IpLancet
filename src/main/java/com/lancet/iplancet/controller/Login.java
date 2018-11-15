@@ -5,8 +5,10 @@ import com.lancet.iplancet.dto.Result;
 import com.lancet.iplancet.entity.MedicalRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -48,6 +50,15 @@ public class Login {
 
         return new Result(0,"获取失败.");
     }
+
+    @RequestMapping("doLogin")
+    public Result doLogin(HttpSession session){
+
+
+        return  new Result(1,"当前sessionId为:" + session.getId());
+    }
+
+
 
 
 
