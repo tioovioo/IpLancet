@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lancet.iplancet.dao.MedicalRecordMapper">
+
+    <select id="getMrInfo" resultType="com.lancet.iplancet.entity.MedicalRecord">
+        select * from t_medical_record where emr_id = #{emrId}
+    </select>
+
+    <insert id="insertToUser" parameterType="com.lancet.iplancet.entity.User" keyProperty="user.userId" useGeneratedKeys="true">
+        INSERT INTO
+            t_user
+        (
+                `user_id`,
+                `user_name`,
+                `user_email`,
+                `bank_id`,
+                `telephone_number`,
+                `user_right`,
+                `create_time`
+        )
+        VALUES
+            (
+                null,
+                #{user.userName},
+                #{user.userEmail},
+                #{user.bankId},
+                #{user.telephoneNumber},
+                #{user.userRight},
+                now()
+            );
+
+    </insert>
+
+    <insert id="insertToUserForOracle" parameterType="com.lancet.iplancet.entity.User">
+
+        INSERT INTO
+        t_user
+        (
+            `user_id`,
+            `user_name`,
+            `user_email`,
+            `bank_id`,
+            `telephone_number`,
+            `user_right`,
+            `create_time`
+        )
+        VALUES
+        (
+            null,
+            #{user.userName},
+            #{user.userEmail},
+            #{user.bankId},
+            #{user.telephoneNumber},
+            #{user.userRight},
+            now()
+        )
+        <selectKey resultType="integer" order="AFTER" keyProperty="user.userId">
+            SELECT LAST_INSERT_ID() AS userId
+        </selectKey>
+    </insert>
+
+
+</mapper>

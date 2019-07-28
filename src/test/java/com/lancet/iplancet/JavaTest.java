@@ -1,7 +1,6 @@
 package com.lancet.iplancet;
 
 import org.junit.Test;
-import org.springframework.util.ClassUtils;
 
 import java.io.File;
 
@@ -18,7 +17,7 @@ public class JavaTest {
     public void test01(){
 
         System.out.println(System.getProperty("user.dir"));
-        System.out.println(ClassUtils.getDefaultClassLoader().getResource("").getPath());
+//        System.out.println(ClassUtils.getDefaultClassLoader().getResource("").getPath());
     }
 
 
