@@ -57,4 +57,4 @@ pagehelper:
 #日志
 logging:
   level:
-    com.doctorai.ipdemo.dao: debug
+    com.lancet.dao: debug
